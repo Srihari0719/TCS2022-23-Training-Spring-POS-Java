@@ -1,0 +1,99 @@
+/**
+ * 
+ */
+package com.tcs.service;
+
+import java.util.Scanner;
+
+import com.tcs.bean.Admin;
+import com.tcs.bean.CourseCatalogue;
+import com.tcs.bean.GradeCard;
+import com.tcs.bean.Login;
+import com.tcs.bean.Student;
+import com.tcs.dao.AdminDaoImp;
+import com.tcs.dao.AdminDaoInterface;
+
+/**
+ * @author Administrator
+ *
+ */
+public class AdminServiceImp implements AdminServiceInterface {
+	Login l = new Login();
+	Admin ad = new Admin();
+	CourseCatalogue cc = new CourseCatalogue();
+	Student st = new Student();
+	GradeCard gc = new GradeCard();
+	Scanner s = new Scanner(System.in);
+	AdminDaoInterface adi = new AdminDaoImp();
+	
+	/*
+	 * @method : approvalForStudent
+	 * Admin will approve the student who are registered
+	 * 
+	 */
+	@Override
+	public void approvalForStudent() {
+		// TODO Auto-generated method stub
+		adi.approvalForStudent();
+	}
+
+	/*
+	 * @method : generateReportCard()
+	 * Generates Report Card of every Student
+	 * 
+	 */
+	@Override
+	public void generateReportCard() {
+		// TODO Auto-generated stub
+		String uName = null;
+		
+		for(int i=0;i<st.getStudentList().size();i++) {
+			uName = st.getStudentList().get(i).getsName();
+			String report = "";
+			for(int j=0;j<gc.getGc().size();j++) {
+				if(gc.getGc().get(j).getUsername().equals(uName)) {
+					report = report + gc.getGc().get(j).getCourseName()+ "-" + gc.getGc().get(j).getGrade() + "\n";
+				}
+			}
+			gc.generateReportCard(uName, report);
+			System.out.println("Successfully Generated.." + uName);
+		}
+	}
+	
+	/*
+	 * @method : addCourse()
+	 * It adds courses in the Course Catalogue
+	 * 
+	 * @param : String course,String professor,int sem,float price
+	 */
+	@Override
+	public void addCourse(int courseId,String course,String professor,int sem,float price) {
+		// TODO Auto-generated method stub
+		cc.addCourse(courseId,course, professor, sem, price);
+	}
+
+	/*
+	 * @method : addProfessor()
+	 * It adds Professors in the Login Class
+	 * 
+	 * @param : String usernameP,String passwordP
+	 */
+	@Override
+	public void addProfessor(String usernameP,String passwordP) {
+		// TODO Auto-generated method stub
+		adi.addProfessor(usernameP, passwordP);
+		
+	}
+
+	/*
+	 * @method : removeCourse()
+	 * It removes courses in the Course Catalogue
+	 * 
+	 * @param : String course,String professor,int sem
+	 */
+	@Override
+	public void removeCourse(String course,String professor,int sem) {
+		// TODO Auto-generated method stub
+		cc.dropCourse(course, professor, sem);
+	}
+}

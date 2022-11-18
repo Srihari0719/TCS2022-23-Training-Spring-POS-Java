@@ -1,0 +1,12 @@
+/**
+ * 
+ */
+package com.tcs.dao;
+
+/**
+ * @author Administrator
+ *
+ */
+public class ConnectionClass {
+
+}

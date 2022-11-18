@@ -1,0 +1,66 @@
+/**
+ * 
+ */
+package com.tcs.client;
+
+import java.time.LocalDate;
+import java.time.LocalTime;
+/**
+ * @author Administrator
+ *
+ */
+import java.util.*;
+
+import com.tcs.service.*;
+
+public class CRSApplication {
+
+	/**
+	 * @param args
+	 */
+	
+	public static void main(String[] args) {
+		try (Scanner sys = new Scanner(System.in)) {
+			AdminServiceInterface asi = new AdminServiceImp();
+			StudentServiceInterface ssi = new StudentServiceImp();
+			ProfessorServiceInterface psi = new ProfessorServiceImp();
+			UserServiceInterface usi = new UserServiceImp();
+			
+			boolean a = true;
+			while(a) {
+				System.out.println("Welcome to the CRS Application - " + LocalDate.now() + " " + LocalTime.now());
+				System.out.println("-----Main Menu----");
+				System.out.println("1.Login");
+				System.out.println("2.Student Registration");
+				System.out.println("3.Update Password");
+				System.out.println("4.Exit");
+				System.out.println("Choose your option: ");
+				try {
+				int n =sys.nextInt();sys.nextLine();
+				switch(n) {
+				case 1: System.out.println("Enter Username: ");
+						String username = sys.nextLine();
+						System.out.println("Enter Password: ");
+						String password = sys.nextLine();
+						System.out.println("Enter Role: ");
+						String role = sys.nextLine();
+						usi.userLogin(username, password, role);
+						a=false;
+						break;
+				case 2: System.out.println("Student Registration..");
+				case 3: System.out.println("Update Password..");
+				case 4: a=false;
+						break;
+				default:break;
+				}
+				}
+				catch(Exception e) {
+					System.out.println(e.getMessage());
+					sys.nextLine();
+					continue;
+				}
+			}
+		}
+	}
+
+}

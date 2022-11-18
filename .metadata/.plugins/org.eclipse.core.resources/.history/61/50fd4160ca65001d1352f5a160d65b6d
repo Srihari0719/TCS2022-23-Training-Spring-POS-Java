@@ -1,0 +1,15 @@
+/**
+ * 
+ */
+package com.tcs.dao;
+
+/**
+ * @author Administrator
+ *
+ */
+public interface ProfessorDaoInterface {
+
+	public void addGrades(String username,String course);
+	public void viewCourseEnrolledStudents(String username,String courseName);
+	
+}

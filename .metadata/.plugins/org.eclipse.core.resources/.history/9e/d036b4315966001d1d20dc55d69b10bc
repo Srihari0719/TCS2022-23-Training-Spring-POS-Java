@@ -1,0 +1,17 @@
+/**
+ * 
+ */
+package com.tcs.exception;
+
+/**
+ * @author Administrator
+ *
+ */
+public class CredentialMismastchException {
+	
+	private String msg;
+	
+	public CredentialMismatchException(String msg) {
+		
+	}
+}

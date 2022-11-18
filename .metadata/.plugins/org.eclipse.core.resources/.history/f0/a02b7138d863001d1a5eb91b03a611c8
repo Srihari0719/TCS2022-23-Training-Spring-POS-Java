@@ -1,0 +1,80 @@
+package com.tcs.bean;
+
+import java.util.ArrayList;
+
+public class CourseCatalogue {
+	private int courseID;
+	private String courseName;
+	private String pName;
+	private String prerequisites;
+	@SuppressWarnings("unchecked")
+	static ArrayList<Course>[] courseList = new ArrayList[4];
+	public int getCourseID() {
+		return courseID;
+	}
+	
+	public static ArrayList<Course>[] getCourseList() {
+		return courseList;
+	}
+
+	public static void setCourseList(ArrayList<Course>[] courseList) {
+		CourseCatalogue.courseList = courseList;
+	}
+
+	public void setCourseID(int courseID) {
+		this.courseID = courseID;
+	}
+	public String getCourseName() {
+		return courseName;
+	}
+	public void setCourseName(String courseName) {
+		this.courseName = courseName;
+	}
+	public String getpName() {
+		return pName;
+	}
+	public void setpName(String pName) {
+		this.pName = pName;
+	}
+	public String getPrerequisites() {
+		return prerequisites;
+	}
+	public void setPrerequisites(String prerequisites) {
+		this.prerequisites = prerequisites;
+	}
+	public void addCourse(String course,String prof,int sem,float price) {
+		courseList[sem-1].add(new Course(course,prof,0,price));
+	}
+	public void dropCourse(String course,String prof,int sem) {
+		int j=-1;
+		for(int i=0;i<courseList[sem-1].size();i++) {
+			if(courseList[sem-1].get(i).getCourseName().equals(course) && courseList[sem-1].get(i).getProfessor().equals(prof)) {
+				j=i;
+				break;
+			}
+		}
+		courseList[sem-1].remove(j);
+	}
+	public void putMethod() {
+		CourseCatalogue.courseList[0].add(new Course("C","Sri",5,149));
+		CourseCatalogue.courseList[0].add(new Course("Chemistry","Sai",7,149));
+		CourseCatalogue.courseList[0].add(new Course("Maths1","Upendra",5,149));
+		CourseCatalogue.courseList[0].add(new Course("BEE","Abdul",4,149));
+		System.out.println(CourseCatalogue.courseList[0].toString());
+		CourseCatalogue.courseList[1].add(new Course("Java","Sri",6,199));
+		CourseCatalogue.courseList[1].add(new Course("Physics","Sai",5,199));
+		CourseCatalogue.courseList[1].add(new Course("Maths2","Upendra",7,199));
+		CourseCatalogue.courseList[1].add(new Course("EG","Sunitha",4,199));
+	
+		CourseCatalogue.courseList[2].add(new Course("DBMS","Sunitha",5,249));
+		CourseCatalogue.courseList[2].add(new Course("C++","Sai",3,249));
+		CourseCatalogue.courseList[2].add(new Course("Maths3","Upendra",5,249));
+		CourseCatalogue.courseList[2].add(new Course("OS","Abdul",6,249));
+	
+		CourseCatalogue.courseList[3].add(new Course("WT","Sri",6,299));
+		CourseCatalogue.courseList[3].add(new Course("CD","Sunitha",7,299));
+		CourseCatalogue.courseList[3].add(new Course("Python","Dinesh",4,299));
+		CourseCatalogue.courseList[3].add(new Course("DS","Abdul",6,299));
+		
+}
+}

@@ -1,0 +1,199 @@
+/**
+ * 
+ */
+package com.tcs.dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Scanner;
+
+import com.tcs.constant.SQLConstants;
+import com.tcs.utils.DBUtils;
+
+/**
+ * @author Administrator
+ *
+ */
+public class AdminDaoImp implements AdminDaoInterface{
+	
+	
+	DBUtils cc = new DBUtils();
+	Connection conn = null;
+	PreparedStatement pr = null;
+	Scanner sc = new Scanner(System.in);
+	
+	@Override
+	public void approvalForStudent() {
+		// TODO Auto-generated method stub
+		//String sql = "SELECT username,isApproved FROM Login";
+		conn = cc.connect();
+		try {
+			pr = conn.prepareStatement(SQLConstants.SELECT_USER);
+			ResultSet rs = pr.executeQuery(SQLConstants.SELECT_USER);
+			int i=0;
+			while(rs.next()) {
+				if(rs.getInt("isApproved")==0) {
+					System.out.println(rs.getString("username"));
+					String username  = rs.getString("username");
+					System.out.println("1.Approve\n2.Deny");
+					int n = sc.nextInt();sc.nextLine();
+					i++;
+					if(n == 1) {
+						PreparedStatement pr1 = conn.prepareStatement(SQLConstants.APPROVED_LOGIN1);
+						pr1.setString(1, rs.getString("username"));
+						pr1.executeUpdate();
+						System.out.println("Successfully Approved..");
+						pr1.close();
+						continue;
+					}
+					else if(n == 2) {
+						PreparedStatement pr1 = conn.prepareStatement(SQLConstants.APPROVED_LOGIN2);
+						pr1.setString(1, rs.getString("username"));
+						pr1.executeUpdate();
+						pr1.close();
+						continue;
+					}
+					else
+						throw new NullPointerException("Please give valid input");
+				}
+			}
+			if(i==0)
+				System.out.println("No new Requests..");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			conn.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void generateReportCard() {
+		// TODO Auto-generated method stub
+		conn = cc.connect();
+		
+		try {
+			PreparedStatement pr1 = conn.prepareStatement(SQLConstants.SELECT_FAIL);
+			ResultSet rs = pr1.executeQuery(SQLConstants.SELECT_FAIL);
+			pr = conn.prepareStatement(SQLConstants.UPDATE_FAIL_RESULT);
+			int i=0;
+			while(rs.next()) {
+				pr.setInt(1, rs.getInt("studentId"));
+				pr.executeUpdate();
+				i++;
+			}
+			PreparedStatement pr2 = conn.prepareStatement(SQLConstants.UPDATE_PASS_RESULT);
+			int j = pr2.executeUpdate();
+			System.out.println("Successfully Generated..");
+			System.out.println("Number of FAIL Students : " + i);
+			System.out.println("Number of PASS Students : " + j);
+			pr1.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			conn.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void addCourse(int courseId,String course, String professor, int sem, float price) {
+		// TODO Auto-generated method stub
+		conn = cc.connect();
+		try {
+			pr = conn.prepareStatement(SQLConstants.ADD_COURSE);
+			pr.setInt(1, courseId);
+			pr.setString(2, course);
+			pr.setString(3, professor);
+			pr.setFloat(4, price);
+			pr.setInt(5, sem);
+			pr.executeUpdate();
+			System.out.println("Successfully Added.");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			conn.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void addProfessor(String usernameP, String passwordP) {
+		// TODO Auto-generated method stub
+		conn = cc.connect();
+		try {
+			pr = conn.prepareStatement(SQLConstants.ADD_PROFESSOR);
+			pr.setString(1, usernameP);
+			pr.setString(2, passwordP);
+			pr.setString(3, "professor");
+			pr.setInt(4, 1);
+			pr.executeUpdate();
+			System.out.println("Successfully Added..");
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		String pName =  usernameP.substring(0, 1).toUpperCase() + usernameP.substring(1, usernameP.indexOf("@gmail.com"));
+	
+		try {
+			pr = conn.prepareStatement(SQLConstants.PROFESSOR);
+			ResultSet rs = pr.executeQuery(SQLConstants.MAX_PROFESSORID);
+			int max1 = 0;
+			while(rs.next()) {
+			max1 = rs.getInt(1)+1;
+			}
+			pr.setInt(1, max1);
+			pr.setString(2, usernameP);
+			pr.setString(3, pName);
+			pr.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			conn.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+
+	@Override
+	public void removeCourse(String course, String professor) {
+		// TODO Auto-generated method stub
+		conn = cc.connect();
+		try {
+			pr = conn.prepareStatement(SQLConstants.REMOVE_COURSE);
+			pr.setString(1, course);
+			pr.setString(2, professor);
+			pr.executeUpdate();
+			System.out.println("Successfully Removed.");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			conn.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+}

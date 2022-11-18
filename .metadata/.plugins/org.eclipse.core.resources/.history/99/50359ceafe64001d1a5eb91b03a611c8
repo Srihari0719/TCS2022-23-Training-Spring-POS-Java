@@ -1,0 +1,18 @@
+/**
+ * 
+ */
+package com.tcs.dao;
+
+/**
+ * @author Administrator
+ *
+ */
+public interface UserDaoInterface {
+
+	public void userLogin(String username, String password, String role);
+	public void adminLogin(String username, String password);
+	public void professorLogin(String username, String password);
+	public void studentLogin(String username, String password);
+
+	
+}

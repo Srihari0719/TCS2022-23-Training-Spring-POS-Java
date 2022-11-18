@@ -1,0 +1,48 @@
+/**
+ * 
+ */
+package com.tcs.bean;
+
+/**
+ * @author Administrator
+ *
+ */
+public class Payment {
+	private int studentID;
+	private String studentName;
+	private int noOfCoursesRegistered;
+	private float amount;
+	private String registeredCourseNames;
+	
+	public int getStudentID() {
+		return studentID;
+	}
+	public void setStudentID(int studentID) {
+		this.studentID = studentID;
+	}
+	public String getStudentName() {
+		return studentName;
+	}
+	public void setStudentName(String studentName) {
+		this.studentName = studentName;
+	}
+	public int getNoOfCoursesRegistered() {
+		return noOfCoursesRegistered;
+	}
+	public void setNoOfCoursesRegistered(int noOfCoursesRegistered) {
+		this.noOfCoursesRegistered = noOfCoursesRegistered;
+	}
+	public float getAmount() {
+		return amount;
+	}
+	public void setAmount(float amount) {
+		this.amount = amount;
+	}
+	public String getRegisteredCourseNames() {
+		return registeredCourseNames;
+	}
+	public void setRegisteredCourseNames(String registeredCourseNames) {
+		this.registeredCourseNames = registeredCourseNames;
+	}
+	
+}

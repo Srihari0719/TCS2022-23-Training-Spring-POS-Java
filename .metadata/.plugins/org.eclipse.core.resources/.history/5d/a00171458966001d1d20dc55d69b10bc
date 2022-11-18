@@ -1,0 +1,45 @@
+/**
+ * 
+ */
+package com.tcs.bean;
+
+import java.util.ArrayList;
+
+/**
+ * @author Administrator
+ *
+ */
+public class Admin {
+
+	static ArrayList<Login> studentApprovalList = new ArrayList<>();
+	
+	public ArrayList<Login> getStudentApprovalList() {
+		return studentApprovalList;
+	}
+	public void setStudentApprovalList(ArrayList<Login> studentApprovalList) {
+		this.studentApprovalList = studentApprovalList;
+	}
+	
+	/*
+	 * @method : approvalList
+	 * This method adds the approvals list to the studentApprovalList 
+	 * 
+	 * @param : String username, String password
+	 */
+	public void approvalList(String username,String password) {
+		studentApprovalList.add(new Login(username,password));
+	}
+	
+	/*
+	 * @method : approvedList
+	 * This method removes the approvals list from the studentApprovalList and adds the credentials to student credentials list
+	 * 
+	 * @param : String username, String password
+	 */
+	public void approvedList(String username,String password) {
+		Login l = new Login();
+		l.mp1.add(new Login(username,password));
+		studentApprovalList.remove(new Login(username,password));
+	}
+	
+}

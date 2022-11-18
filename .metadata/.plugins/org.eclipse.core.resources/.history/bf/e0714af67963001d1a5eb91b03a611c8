@@ -1,0 +1,62 @@
+/*
+ * 
+ */
+package com.tcs.service;
+
+import com.tcs.bean.*;
+
+/**
+ * @author Administrator
+ *
+ */
+public class StudentServiceImp implements StudentServiceInterface{
+	SemesterRegistration srs = new SemesterRegistration();
+	GradeCard gc = new GradeCard();
+	@Override
+	public void studentCourseRegistration() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void addCourse(String courseName,String professor,String username) {
+		// TODO Auto-generated method stub
+		Course course = new Course(courseName,professor);
+		Student student = new Student(username);
+		student.addCourse(course, username);
+	}
+	@Override
+	public void dropCourse(String courseName,String professor,String username) {
+		// TODO Auto-generated method stub
+		Course course = new Course(courseName,professor);
+		Student student = new Student(username);
+		student.dropCourse(course, username);
+	}
+
+	@Override
+	public void viewReportCard(String username) {
+		// TODO Auto-generated method stub
+		for(int i=o;i<gc.getStudentCourseGrades().size();i++) {
+			if(gc.getStudentCourseGrades().get(i).getStudentName().equals(username))
+				System.out.println(gc.getStudentCourseGrades().get(i).getCourseGrades());
+		}
+	}
+
+	@Override
+	public void semesterRegistration(String username,int semester) {
+		// TODO Auto-generated method stub
+		srs.addSem(username, semester);
+	}
+
+	@Override
+	public void payFee(String username) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void studentRegistration() {
+		// TODO Auto-generated method stub
+		
+	}
+}

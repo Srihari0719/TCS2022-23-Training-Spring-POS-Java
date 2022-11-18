@@ -1,0 +1,79 @@
+/**
+ * 
+ */
+package com.tcs.bean;
+
+import java.util.ArrayList;
+
+/**
+ * @author Administrator
+ *
+ */
+public class Payment {
+	private String professor;
+	private String studentName;
+	private float coursePrice;
+	private float amount;
+	private String registeredCourseNames;
+	static ArrayList<Payment> payment = new ArrayList<>();
+	
+	public Payment() {
+		super();
+	}
+	
+	public Payment(String registeredCourseNames, String professor, float coursePrice) {
+		super();
+		this.professor = professor;
+		this.coursePrice = coursePrice;
+		this.registeredCourseNames = registeredCourseNames;
+	}
+
+	public String getProfessor() {
+		return professor;
+	}
+	public void setProfessor(String professor) {
+		this.professor = professor;
+	}
+	public String getStudentName() {
+		return studentName;
+	}
+	public void setStudentName(String studentName) {
+		this.studentName = studentName;
+	}
+	public float getCoursePrice() {
+		return coursePrice;
+	}
+	public void setCoursePrice(float coursePrice) {
+		this.coursePrice = coursePrice;
+	}
+	public float getAmount() {
+		return amount;
+	}
+	public void setAmount(float amount) {
+		this.amount = amount;
+	}
+	public String getRegisteredCourseNames() {
+		return registeredCourseNames;
+	}
+	public void setRegisteredCourseNames(String registeredCourseNames) {
+		this.registeredCourseNames = registeredCourseNames;
+	}
+	public void put() {
+		payment.add(new Payment("C","Sri",149));
+		payment.add(new Payment("Chemistry","Sai",149));
+		payment.add(new Payment("Maths1","Upendra",149));
+		payment.add(new Payment("BEE","Abdul",149));
+		payment.add(new Payment("Java","Sri",199));
+		payment.add(new Payment("Physics","Sai",199));
+		payment.add(new Payment("Maths2","Upendra",199));
+		payment.add(new Payment("EG","Sunitha",199));
+		payment.add(new Payment("WT","Sri",299));
+		payment.add(new Payment("C++","Sai",249));
+		payment.add(new Payment("Maths3","Upendra",249));
+		payment.add(new Payment("OS","Abdul",249));
+		payment.add(new Payment("DBMS","Sunitha",249));
+		payment.add(new Payment("CD","Sunitha",299));
+		payment.add(new Payment("Python","Dinesh",299));
+		payment.add(new Payment("DS","Abdul",299));
+	}
+}

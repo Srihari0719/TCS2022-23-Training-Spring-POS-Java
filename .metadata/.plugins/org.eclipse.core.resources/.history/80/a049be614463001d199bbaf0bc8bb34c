@@ -1,0 +1,70 @@
+/**
+ * 
+ */
+package com.tcs.bean;
+
+/**
+ * @author Administrator
+ *
+ */
+public class SemesterRegistration {
+	private int studentID;
+	private String studentName;
+	private int semester;
+	private String regulation;
+	static ArrayList<>
+	
+	public SemesterRegistration() {
+		
+	}
+	public int getStudentID() {
+		return studentID;
+	}
+	public void setStudentID(int studentID) {
+		this.studentID = studentID;
+	}
+	public String getStudentName() {
+		return studentName;
+	}
+	public void setStudentName(String studentName) {
+		this.studentName = studentName;
+	}
+	public int getSemester() {
+		return semester;
+	}
+	public void setSemester(int semester) {
+		this.semester = semester;
+	}
+	public String getRegulation() {
+		return regulation;
+	}
+	public void setRegulation(String regulation) {
+		this.regulation = regulation;
+	}
+	public void putMethod() {
+		if(semester == 1) {
+			CourseCatalogue.courseList[0].add(new Course("C","Sri",5,149));
+			CourseCatalogue.courseList[0].add(new Course("Chemistry","Sai",7,149));
+			CourseCatalogue.courseList[0].add(new Course("Maths1","Upendra",5,149));
+			CourseCatalogue.courseList[0].add(new Course("BEE","Abdul",4,149));
+		}
+		if(semester == 2) {
+			CourseCatalogue.courseList[1].add(new Course("Java","Sri",6,199));
+			CourseCatalogue.courseList[1].add(new Course("Physics","Sai",5,199));
+			CourseCatalogue.courseList[1].add(new Course("Maths2","Upendra",7,199));
+			CourseCatalogue.courseList[1].add(new Course("EG","Sunitha",4,199));
+		}
+		if(semester == 3) {
+			CourseCatalogue.courseList[2].add(new Course("DBMS","Sunitha",5,249));
+			CourseCatalogue.courseList[2].add(new Course("C++","Sai",3,249));
+			CourseCatalogue.courseList[2].add(new Course("Maths3","Upendra",5,249));
+			CourseCatalogue.courseList[2].add(new Course("OS","Abdul",6,249));
+		}
+		if(semester == 4) {
+			CourseCatalogue.courseList[3].add(new Course("WT","Sri",6,299));
+			CourseCatalogue.courseList[3].add(new Course("CD","Sunitha",7,299));
+			CourseCatalogue.courseList[3].add(new Course("Python","Dinesh",4,299));
+			CourseCatalogue.courseList[3].add(new Course("DS","Abdul",6,299));
+		}
+	}
+}

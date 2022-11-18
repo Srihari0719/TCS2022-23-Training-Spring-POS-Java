@@ -1,0 +1,57 @@
+/**
+ * 
+ */
+package com.tcs.service;
+
+import java.util.Scanner;
+
+import com.tcs.bean.CourseCatalogue;
+import com.tcs.bean.GradeCard;
+import com.tcs.bean.Professor;
+import com.tcs.bean.Student;
+import com.tcs.dao.ProfessorDaoImp;
+import com.tcs.dao.ProfessorDaoInterface;
+import com.tcs.exception.GradeNotFoundException;
+import com.tcs.exception.UserNotFoundException;
+
+/**
+ * @author Administrator
+ *
+ */
+public class ProfessorServiceImp implements ProfessorServiceInterface{
+	
+	ProfessorDaoInterface pdi = new ProfessorDaoImp();
+	/*
+	 * @method : addGrades()
+	 * It add grades to the respective Students
+	 * 
+	 * @param : String username, String courseName
+	 */
+	@Override
+	public void addGrades(String username) {
+		// TODO Auto-generated method stub
+		try {
+			pdi.addGrades(username);
+		} catch (GradeNotFoundException e) {
+			// TODO Auto-generated catch block
+			System.out.println(e.getMsg());
+		}
+	}
+	
+	/*
+	 * @method : viewCourseEnrolledStudents
+	 * Displays the List of Students who enrolled for the course
+	 * 
+	 * @param : String username,String courseName
+	 */
+	@Override
+	public void viewCourseEnrolledStudents(String username) {
+		// TODO Auto-generated method stub
+		try {
+			pdi.viewCourseEnrolledStudents(username);
+		} catch (UserNotFoundException e) {
+			// TODO Auto-generated catch block
+			System.out.println(e.getMsg());
+		}
+	}
+}

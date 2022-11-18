@@ -1,0 +1,57 @@
+/**
+ * 
+ */
+package com.tcs.bean;
+
+import java.util.ArrayList;
+
+/**
+ * @author Administrator
+ *
+ */
+public class Admin {
+	private int adminID;
+	private String adminName;
+	/**
+	 * @return the adminID
+	 */
+	static ArrayList<Login> studentApprovalList = new ArrayList<>();
+	
+	
+	public ArrayList<Login> getStudentApprovalList() {
+		return studentApprovalList;
+	}
+	public void setStudentApprovalList(ArrayList<Login> studentApprovalList) {
+		this.studentApprovalList = studentApprovalList;
+	}
+	public int getAdminID() {
+		return adminID;
+	}
+	/**
+	 * @param adminID the adminID to set
+	 */
+	public void setAdminID(int adminID) {
+		this.adminID = adminID;
+	}
+	/**
+	 * @return the adminName
+	 */
+	public String getAdminName() {
+		return adminName;
+	}
+	/**
+	 * @param adminName the adminName to set
+	 */
+	public void setAdminName(String adminName) {
+		this.adminName = adminName;
+	}
+	public void approvalList(String username,String password) {
+		studentApprovalList.add(new Login(username,password));
+	}
+	public void approvedList(String username,String password) {
+		Login l = new Login();
+		l.mp1.add(new Login(username,password));
+		studentApprovalList.remove(new Login(username,password));
+	}
+	
+}

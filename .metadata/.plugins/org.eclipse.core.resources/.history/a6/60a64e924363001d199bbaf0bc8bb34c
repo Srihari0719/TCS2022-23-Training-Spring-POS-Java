@@ -1,0 +1,11 @@
+package com.tcs.service;
+
+public interface StudentServiceInterface {
+	public void studentCourseRegistration();
+	public void addCourse(String courseName,String professor,String username);
+	public void dropCourse(String courseName,String professor,String username);
+	public void viewReportCard(String username);
+	public void semesterRegistration();
+	public void payFee();
+	public void studentRegistration(String username,int semester);
+}

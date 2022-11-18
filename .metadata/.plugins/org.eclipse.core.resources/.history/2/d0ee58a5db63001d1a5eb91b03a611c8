@@ -1,0 +1,107 @@
+/**
+ * 
+ */
+package com.tcs.bean;
+
+import java.util.*;
+
+/**
+ * @author Administrator
+ *
+ */
+public class Login {
+	private String username;
+	private String password;
+	private String role;
+	static ArrayList<Login> mp = new ArrayList<>();
+	static ArrayList<Login> mp2 = new ArrayList<>();
+	static ArrayList<Login> mp1 = new ArrayList<>();
+	
+	public Login() {
+		 
+	}
+
+	public Login(String username, String password) {
+		super();
+		this.username = username;
+		this.password = password;
+	}
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	public boolean verifyAdminCredentials(Login la) {
+		
+		boolean a =mp.stream().anyMatch(lp->lp.getUsername().equals((la).getUsername())&&lp.getPassword().equals(la.getPassword()));
+		if(a) {
+			return true;
+		}
+		else 
+			return false;
+	}
+	public boolean verifyStudentCredentials(Login la) {
+		
+		boolean a =mp1.stream().anyMatch(lp->lp.getUsername().equals((la).getUsername())&&lp.getPassword().equals(la.getPassword()));
+		if(a) {
+			System.out.println("Login Successful.");
+			return true;
+		}
+		else 
+			return false;
+	}
+	public void put() {
+		mp.add(new Login("sri@gmail.com", "12345678"));
+		mp.add(new Login("abdul@gmail.com", "1234567"));
+		mp1.add(new Login("upendra@gmail.com", "1234678"));
+		mp1.add(new Login("sunitha@gmail.com", "123567"));
+		mp2.add(new Login("sai@gmail.com", "12345678"));
+		mp2.add(new Login("dinesh@gmail.com", "1234567"));
+	}
+	public boolean verifyProfessorCredentials(Login la) {
+		
+		boolean a =mp2.stream().anyMatch(lp->lp.getUsername().equals((la).getUsername())&&lp.getPassword().equals(la.getPassword()));
+		if(a) {
+			return true;
+		}
+		else 
+			return false;
+	}
+	public void addProfesso(String usernameP,String passwordP) {
+		mp2.add(new Login(usernameP,passwordP));
+	}
+	public void updateAdminPassword(String username,String password) {
+		for(int i=0;i<mp.size();i++) {
+			if(mp.get(i).getUsername().equals(username)) {
+				mp.get(i).setPassword(password);
+				System.out.println("Password Updated Successfully..");
+				break;
+			}
+		}
+	}
+	public void updateProfessorPassword(String username,String password) {
+		for(int i=0;i<mp2.size();i++) {
+			if(mp2.get(i).getUsername().equals(username)) {
+				mp2.get(i).setPassword(password);
+				System.out.println("Password Updated Successfully..");
+				break;
+			}
+		}
+	}
+	public void updateStudentPassword(String username,String password) {
+		for(int i=0;i<mp1.size();i++) {
+			if(mp1.get(i).getUsername().equals(username)) {
+				mp1.get(i).setPassword(password);
+				System.out.println("Password Updated Successfully..");
+				break;
+			}
+		}
+	}
+}

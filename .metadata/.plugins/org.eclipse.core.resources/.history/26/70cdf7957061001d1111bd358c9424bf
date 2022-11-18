@@ -1,0 +1,80 @@
+/**
+ * 
+ */
+package com.tcs.service;
+
+import com.tcs.bean.Admin;
+import com.tcs.bean.Login;
+
+/**
+ * @author Administrator
+ *
+ */
+public class UserServiceImp implements UserServiceInterface{
+
+	@Override
+	public void userRegistration() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void adminLogin(String username, String password) {
+		// TODO Auto-generated method stub
+		Login la = new Login(username,password);
+		if(la.verifyAdminCredentials(la)) {
+			System.out.println("--Admin Menu--");
+			System.out.println();
+			System.out.println("1.Approval\n2.Generate Report Card\n3.Add Professor\n4.Add Course\n5.Remove Course");
+		}
+		else {
+			throw new NullPointerException("Invalid Credentials.");
+		}
+	}
+
+	@Override
+	public void userLogin(String username, String password, String role) {
+		// TODO Auto-generated method stub
+		if(role.equalsIgnoreCase("admin"))  {
+			adminLogin(username,password);
+		}
+		else if(role.equalsIgnoreCase("professor")) {
+			professorLogin(username,password);
+		}
+		else if(role.equalsIgnoreCase("student")) {
+			studentLogin(username,password);
+		}
+		else {
+			throw new NullPointerException("Please give valid role.");
+		}
+	}
+
+	@Override
+	public void professorLogin(String username, String password) {
+		// TODO Auto-generated method stub
+		Login la = new Login(username,password);
+		if(la.verifyProfessorCredentials(la)) {
+			System.out.println("--Professor Menu--");
+			System.out.println();
+			System.out.println("1.Add Grades\n2.View Course Enrolled Students");
+		}
+		else {
+			throw new NullPointerException("Invalid Credentials.");
+		}
+	}
+
+	@Override
+	public void studentLogin(String username, String password) {
+		// TODO Auto-generated method stub
+		Login la = new Login(username,password);
+		if(la.verifyStudentCredentials(la)) {
+			System.out.println("--Student Menu--");
+			System.out.println();
+			System.out.println("1.Add Course\n2.View Report Card\n3.Drop Course\n4.Make Payment");
+		}
+		else {
+			throw new NullPointerException("Invalid Credentials.");
+		}
+	}
+
+}

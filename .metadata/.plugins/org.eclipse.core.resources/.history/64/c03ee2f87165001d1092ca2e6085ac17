@@ -1,0 +1,83 @@
+/*
+ * 
+ */
+package com.tcs.service;
+
+import com.tcs.bean.*;
+
+/**
+ * @author Administrator
+ *
+ */
+public class StudentServiceImp implements StudentServiceInterface{
+	SemesterRegistration srs = new SemesterRegistration();
+	GradeCard gc = new GradeCard();
+	CourseCatalogue cc =new CourseCatalogue();
+	Payment pp = new Payment();
+	
+	/*
+	 * @method : addCourse()
+	 * It add course in the course list of enrolled courses of the student
+	 * 
+	 * @param : String courseName,String professor,String username
+	 */
+	@Override
+	public void addCourse(String courseName,String professor,String username) {
+		// TODO Auto-generated method stub
+		Course course = new Course(courseName,professor);
+		Student student = new Student(username);
+		student.addCourse(course, username);
+	}
+	
+	/*
+	 * @method : dropCourse()
+	 * It drops course in the course list of enrolled courses of the student
+	 * 
+	 * @param : String courseName,String professor,String username
+	 */
+	@Override
+	public void dropCourse(String courseName,String professor,String username) {
+		// TODO Auto-generated method stub
+		Course course = new Course(courseName,professor);
+		Student student = new Student(username);
+		student.dropCourse(course, username);
+	}
+
+	/*
+	 * @method : viewReportCard()
+	 * It displays Report Card of particular student
+	 * 
+	 * @param : String username
+	 */
+	@Override
+	public void viewReportCard(String username) {
+		// TODO Auto-generated method stub
+		gc.viewReportCard(username);
+	}
+
+	/*
+	 * @method : SemesterRegistration()
+	 * To register the semester
+	 * 
+	 * @param : String username, int semester
+	 */
+	@Override
+	public void semesterRegistration(String username,int semester) {
+		// TODO Auto-generated method stub
+		srs.addSem(username, semester);
+		
+	}
+
+	/*
+	 * @method : payFee()
+	 * The method is used to make payment
+	 * 
+	 * @param : String username
+	 */
+	@Override
+	public void payFee(String username) {
+		// TODO Auto-generated method stub
+		pp.payFee(username);
+	}
+
+}

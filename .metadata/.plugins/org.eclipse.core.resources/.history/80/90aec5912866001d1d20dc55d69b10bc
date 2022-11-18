@@ -1,0 +1,29 @@
+/**
+ * 
+ */
+package com.tcs.constant;
+
+/**
+ * @author Administrator
+ *
+ */
+public class SQLConstants {
+	public static final String SELECT_USER = "SELECT username,isApproved FROM Login";
+	public static final String APPROVED_LOGIN1 = "UPDATE Login SET isApproved=1 where username=?";
+	public static final String APPROVED_LOGIN2 = "UPDATE Login SET isApproved=2 where username=?";	
+	public static final String UPDATE_PASSWORD = "UPDATE Login SET password=? where username=? AND password=? AND role=? AND isApproved=1";
+	public static final String ADD_STUDENT = "INSERT INTO Login VALUES (?,?,?,?)";
+	public static final String USER_LOGIN = "SELECT username,password,role,isApproved FROM Login";
+	public static final String SELECT_FAIL = "SELECT DISTINCT(studentId) FROM GradeCard WHERE gradeId=6 OR gradeId=7";
+	public static final String UPDATE_FAIL_RESULT = "UPDATE Student SET result='fail' WHERE Id =?";
+	public static final String UPDATE_PASS_RESULT = "UPDATE Student SET result='pass' WHERE result != 'fail'";
+	public static final String ADD_COURSE = "INSERT INTO Catalog Values(?,?,?,?,?)";
+	public static final String ADD_PROFESSOR = "INSERT INTO Login VALUES(?,?,?,?)";
+	public static final String PROFESSOR = "INSERT INTO Professor VALUES(?,?,?)";
+	public static final String MAX_PROFESSORID = "SELECT MAX(professorId) FROM Professor";
+	public static final String REMOVE_COURSE = "DELETE FROM Catalog WHERE courseName=? AND profName=?";
+	public static final String LIST_ENROLLED_STUDENTS = "SELECT Id,name,courseId,courseName FROM Student s INNER JOIN CourseRegistration cr ON s.Id=cr.studentId WHERE cr.pName= (SELECT professorName FROM Professor WHERE username=?)";
+	public static final String GRADECARD = "INSERT INTO GradeCard VALUES(?,?,?)";
+
+
+}

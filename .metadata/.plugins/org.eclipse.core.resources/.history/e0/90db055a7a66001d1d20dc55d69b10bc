@@ -1,0 +1,21 @@
+/**
+ * 
+ */
+package com.tcs.exception;
+
+/**
+ * @author Administrator
+ *
+ */
+public class SemesterNotFoundException extends Exception{
+	
+	private int semester;
+	
+	public SemesterNotFoundException(int semester) {
+		this.semester = semester;
+	}
+	
+	public int getSemester() {
+		return semester;
+	}
+}

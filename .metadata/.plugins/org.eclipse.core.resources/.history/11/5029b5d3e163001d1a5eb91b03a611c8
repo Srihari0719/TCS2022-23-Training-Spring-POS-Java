@@ -1,0 +1,60 @@
+/**
+ * 
+ */
+package com.tcs.service;
+
+import java.util.Scanner;
+
+import com.tcs.bean.CourseCatalogue;
+import com.tcs.bean.GradeCard;
+import com.tcs.bean.Professor;
+import com.tcs.bean.Student;
+
+/**
+ * @author Administrator
+ *
+ */
+public class ProfessorServiceImp implements ProfessorServiceInterface{
+	Professor p = new Professor();
+	CourseCatalogue cc = new CourseCatalogue();
+	Student s = new Student();
+	GradeCard gc = new GradeCard();
+	Scanner sc = new Scanner(System.in);
+	@Override
+	public void addGrades(String username) {
+		// TODO Auto-generated method stub
+		viewCourseEnrolledStudents(username);
+		System.out.println("Enter Student Name :");
+		String student = sc.nextLine();
+		System.out.println("Enter Course Name : ");
+		String course = sc.nextLine();
+		System.out.println("Enter Grade : ");
+		String grade = sc.next();
+		gc.addGrades(student, course, grade);
+	}
+	
+	@Override
+	public void viewCourseEnrolledStudents(String username) {
+		// TODO Auto-generated method stub
+		String student = null;
+		String name = null;
+		for(int i=0;i<p.getPr().size();i++) {
+			if(p.getPr().get(i).getProfessorUsername().equals(username)) {
+				name = p.getPr().get(i).getProfessorName();
+				break;
+			}
+		}
+		System.out.println("Enter Coursse Name : ");
+		String courseName = sc.nextLine();
+		for(int i=0;i<s.getStudentList().size();i++) {
+			for(int j=0;j<s.getStudentList().get(i).getCourseList().size();j++) {
+				if(s.getStudentList().get(i).getCourseList().get(j).getCourseName().equals(courseName)) {
+					if(s.getStudentList().get(i).getCourseList().get(j).getProfessor().equals(name)) {
+					student = s.getStudentList().get(i).getsName();
+					System.out.println(student);
+					}
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,36 @@
+/**
+ * 
+ */
+package com.tcs.dao;
+
+/**
+ * @author Administrator
+ *
+ */
+public class UserDaoImp implements UserDaoInterface{
+
+	@Override
+	public void userLogin(String username, String password, String role) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void adminLogin(String username, String password) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void professorLogin(String username, String password) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void studentLogin(String username, String password) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

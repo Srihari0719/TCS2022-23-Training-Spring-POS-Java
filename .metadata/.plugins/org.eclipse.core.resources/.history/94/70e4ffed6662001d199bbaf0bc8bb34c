@@ -1,0 +1,41 @@
+/**
+ * 
+ */
+package com.tcs.service;
+
+/**
+ * @author Administrator
+ *
+ */
+public class AdminServiceImp implements AdminServiceInterface {
+
+	@Override
+	public void approvalForStudent() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void generateReportCard() {
+		// TODO Auto-generated stub
+		
+	}
+
+	@Override
+	public void addCourse() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void addProfessor() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void removeCourse() {
+		// TODO Auto-generated method stub
+		
+	}
+}

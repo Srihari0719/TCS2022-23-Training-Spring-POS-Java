@@ -1,0 +1,18 @@
+/**
+ * 
+ */
+package com.tcs.constant;
+
+/**
+ * @author Administrator
+ *
+ */
+public class SQLConstants {
+	public static final String SELECT_USER = "SELECT username,isApproved FROM Login";
+	public static final String APPROVED_LOGIN1 = "UPDATE Login SET isApproved=1 where username=?";
+	public static final String APPROVED_LOGIN2 = "UPDATE Login SET isApproved=2 where username=?";	
+
+
+
+
+}

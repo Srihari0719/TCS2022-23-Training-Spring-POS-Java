@@ -1,0 +1,24 @@
+/**
+ * 
+ */
+package com.tcs.dao;
+
+/**
+ * @author Administrator
+ *
+ */
+public class ProfessorDaoImp implements ProfessorDaoInterface{
+
+	@Override
+	public void addGrades(String username, String course) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void viewCourseEnrolledStudents(String username, String courseName) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

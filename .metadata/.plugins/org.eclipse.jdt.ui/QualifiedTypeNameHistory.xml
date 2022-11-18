@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="com.tcs.service.AdminServiceInterface"/>
+    <fullyQualifiedTypeName name="java.time.LocalDate"/>
+    <fullyQualifiedTypeName name="java.time.LocalTime"/>
+    <fullyQualifiedTypeName name="java.io.IOException"/>
+    <fullyQualifiedTypeName name="java.util.Map.Entry"/>
+    <fullyQualifiedTypeName name="com.tcs.bean.Course"/>
+    <fullyQualifiedTypeName name="java.util.Map"/>
+    <fullyQualifiedTypeName name="java.util.TreeMap"/>
+    <fullyQualifiedTypeName name="java.util.stream.Collector"/>
+    <fullyQualifiedTypeName name="java.util.Arrays"/>
+    <fullyQualifiedTypeName name="com.tcs.bean.Admin"/>
+    <fullyQualifiedTypeName name="com.tcs.bean.CourseCatalogue"/>
+    <fullyQualifiedTypeName name="com.tcs.bean.Student"/>
+    <fullyQualifiedTypeName name="com.tcs.bean.GradeCard"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="com.tcs.bean.Login"/>
+    <fullyQualifiedTypeName name="com.tcs.bean.Payment"/>
+    <fullyQualifiedTypeName name="com.tcs.bean.Professor"/>
+    <fullyQualifiedTypeName name="com.tcs.bean.SemesterRegistration"/>
+    <fullyQualifiedTypeName name="com.tcs.dao.AdminDaoInterface"/>
+    <fullyQualifiedTypeName name="com.tcs.dao.AdminDaoImp"/>
+    <fullyQualifiedTypeName name="java.sql.ResultSet"/>
+    <fullyQualifiedTypeName name="com.mysql.jdbc.Connection"/>
+    <fullyQualifiedTypeName name="java.sql.PreparedStatement"/>
+    <fullyQualifiedTypeName name="com.tcs.dao.UserDaoImp"/>
+    <fullyQualifiedTypeName name="com.tcs.dao.UserDaoInterface"/>
+    <fullyQualifiedTypeName name="com.tcs.dao.StudentDaoInterface"/>
+    <fullyQualifiedTypeName name="java.util.Scanner"/>
+    <fullyQualifiedTypeName name="com.tcs.dao.ProfessorDaoInterface"/>
+    <fullyQualifiedTypeName name="com.tcs.dao.ProfessorDaoImp"/>
+    <fullyQualifiedTypeName name="com.tcs.utils.DBUtils"/>
+    <fullyQualifiedTypeName name="java.sql.Connection"/>
+    <fullyQualifiedTypeName name="com.tcs.constant.SQLConstants"/>
+    <fullyQualifiedTypeName name="com.mysql.jdbc.PreparedStatement"/>
+    <fullyQualifiedTypeName name="com.tcs.exception.InvalidInputException"/>
+    <fullyQualifiedTypeName name="java.util.InputMismatchException"/>
+    <fullyQualifiedTypeName name="com.tcs.exception.GradeNotFoundException"/>
+    <fullyQualifiedTypeName name="com.tcs.exception.SemesterNotFoundException"/>
+    <fullyQualifiedTypeName name="com.tcs.exception.UserNotFoundException"/>
+    <fullyQualifiedTypeName name="com.tcs.exception.CredentialMismatchException"/>
+    <fullyQualifiedTypeName name="com.tcs.exception.AlreadyExistsException"/>
+</qualifiedTypeNameHistroy>

@@ -1,0 +1,55 @@
+/*
+ * 
+ */
+package com.tcs.service;
+
+import com.tcs.bean.*;
+
+/**
+ * @author Administrator
+ *
+ */
+public class StudentServiceImp implements StudentServiceInterface{
+	@Override
+	public void studentCourseRegistration() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void addCourse(String courseName,String professor,String username) {
+		// TODO Auto-generated method stub
+		Course course = new Course(courseName,professor);
+		Student student = new Student(username);
+		student.addCourse(course, username);
+	}
+	@Override
+	public void dropCourse(String courseName,String professor) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void viewReportCard(String username) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void semesterRegistration() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void payFee() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void studentRegistration() {
+		// TODO Auto-generated method stub
+		
+	}
+}

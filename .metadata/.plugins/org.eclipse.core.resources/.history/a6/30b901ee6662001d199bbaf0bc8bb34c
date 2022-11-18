@@ -1,0 +1,16 @@
+/**
+ * 
+ */
+package com.tcs.service;
+
+/**
+ * @author Administrator
+ *
+ */
+public interface AdminServiceInterface {
+	public void approvalForStudent();
+	public void generateReportCard();
+	public void addCourse();
+	public void addProfessor();
+	public void removeCourse();
+}

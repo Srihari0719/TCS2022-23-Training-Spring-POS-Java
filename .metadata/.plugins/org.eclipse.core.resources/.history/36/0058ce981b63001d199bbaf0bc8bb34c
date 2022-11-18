@@ -1,0 +1,37 @@
+/**
+ * 
+ */
+package com.tcs.bean;
+
+/**
+ * @author Administrator
+ *
+ */
+public class Admin {
+	private int adminID;
+	private String adminName;
+	/**
+	 * @return the adminID
+	 */
+	public int getAdminID() {
+		return adminID;
+	}
+	/**
+	 * @param adminID the adminID to set
+	 */
+	public void setAdminID(int adminID) {
+		this.adminID = adminID;
+	}
+	/**
+	 * @return the adminName
+	 */
+	public String getAdminName() {
+		return adminName;
+	}
+	/**
+	 * @param adminName the adminName to set
+	 */
+	public void setAdminName(String adminName) {
+		this.adminName = adminName;
+	}
+}

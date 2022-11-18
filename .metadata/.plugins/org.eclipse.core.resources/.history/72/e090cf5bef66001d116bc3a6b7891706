@@ -1,0 +1,23 @@
+/**
+ * 
+ */
+package com.tcs.exception;
+
+/**
+ * @author Administrator
+ *
+ */
+public class ResultNotFoundException extends Exception{
+	
+	private String msg;
+
+	public ResultNotFoundException(String msg) {
+		super();
+		this.msg = msg;
+	}
+
+	public String getMsg() {
+		return msg;
+	}
+	
+}

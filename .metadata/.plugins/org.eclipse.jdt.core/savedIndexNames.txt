@@ -1,0 +1,5 @@
+INDEX VERSION 1.131+C:\CRS-TCS-JAVA-POS\.metadata\.plugins\org.eclipse.jdt.core
+3013794255.index
+796752888.index
+1865797976.index
+1391627142.index

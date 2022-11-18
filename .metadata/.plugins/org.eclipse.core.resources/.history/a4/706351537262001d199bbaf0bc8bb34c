@@ -1,0 +1,82 @@
+/**
+ * 
+ */
+package com.tcs.bean;
+
+import java.util.*;
+
+/**
+ * @author Administrator
+ *
+ */
+public class Login {
+	private String username;
+	private String password;
+	ArrayList<Login> mp = new ArrayList<>();
+	ArrayList<Login> mp2 = new ArrayList<>();
+	
+	public ArrayList<Login> getMp2() {
+		return mp2;
+	}
+	public void setMp2(ArrayList<Login> mp2) {
+		this.mp2 = mp2;
+	}
+	public Login() {
+		 
+	}
+	public Login(String username, String password) {
+		super();
+		this.username = username;
+		this.password = password;
+	}
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	public boolean verifyAdminCredentials(Login la) {
+		
+		mp.add(new Login("sri@gmail.com", "12345678"));
+		mp.add(new Login("abdul@gmail.com", "1234567"));
+		boolean a =mp.stream().anyMatch(lp->lp.getUsername().equals((la).getUsername())&&lp.getPassword().equals(la.getPassword()));
+		if(a) {
+			System.out.println("Login Successful.");
+			return true;
+		}
+		else 
+			return false;
+	}
+	public boolean verifyStudentCredentials(Login la) {
+		ArrayList<Login> mp1 = new ArrayList<>();
+		mp1.add(new Login("upendra@gmail.com", "1234678"));
+		mp1.add(new Login("sunitha@gmail.com", "123567"));
+		boolean a =mp.stream().anyMatch(lp->lp.getUsername().equals((la).getUsername())&&lp.getPassword().equals(la.getPassword()));
+		if(a) {
+			System.out.println("Login Successful.");
+			return true;
+		}
+		else 
+			return false;
+	}
+	public boolean verifyProfessorCredentials(Login la) {
+		mp2.add(new Login("sai@gmail.com", "12345678"));
+		mp2.add(new Login("dinesh@gmail.com", "1234567"));
+		boolean a =mp2.stream().anyMatch(lp->lp.getUsername().equals((la).getUsername())&&lp.getPassword().equals(la.getPassword()));
+		if(a) {
+			System.out.println("Login Successful.");
+			return true;
+		}
+		else 
+			return false;
+	}
+	public void addProfesso(String usernameP,String passwordP) {
+		mp2.add(new Login(usernameP,passwordP));
+	}
+}

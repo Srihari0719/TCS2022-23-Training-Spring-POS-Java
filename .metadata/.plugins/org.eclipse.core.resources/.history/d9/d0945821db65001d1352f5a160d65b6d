@@ -1,0 +1,12 @@
+/**
+ * 
+ */
+package com.tcs.constant;
+
+/**
+ * @author Administrator
+ *
+ */
+public class SQLConstants {
+	public static final String APPROVED_LOGIN = "SELECT username,isApproved FROM Login";
+}

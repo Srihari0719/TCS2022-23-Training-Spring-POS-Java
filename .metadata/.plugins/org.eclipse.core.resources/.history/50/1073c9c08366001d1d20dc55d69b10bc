@@ -1,0 +1,107 @@
+/*
+ * 
+ */
+package com.tcs.service;
+
+import com.tcs.bean.*;
+import com.tcs.dao.*;
+import com.tcs.exception.AlreadyExistsException;
+import com.tcs.exception.CourseNotFoundException;
+import com.tcs.exception.GradeNotFoundException;
+import com.tcs.exception.SemesterNotFoundException;
+
+/**
+ * @author Administrator
+ *
+ */
+public class StudentServiceImp implements StudentServiceInterface{
+	
+	StudentDaoInterface sdi = new StudentDaoImp();
+	/*
+	 * @method : addCourse()
+	 * It add course in the course list of enrolled courses of the student
+	 * 
+	 * @param : String courseName,String professor,String username
+	 */
+	@Override
+	public void addCourse(int courseId,String courseName,String professor,String username) {
+		// TODO Auto-generated method stub
+		
+		try {
+			sdi.addCourse(courseId,courseName,professor,username);
+		}
+		catch(SemesterNotFoundException e) {
+			System.out.println(e.getMsg());
+		} 
+		catch (AlreadyExistsException e) {
+			// TODO Auto-generated catch block
+			System.out.println(e.getId() + " Course Already Exists");
+		}
+	}
+	
+	/*
+	 * @method : dropCourse()
+	 * It drops course in the course list of enrolled courses of the student
+	 * 
+	 * @param : String courseName,String professor,String username
+	 */
+	@Override
+	public void dropCourse(String courseName,String professor,String username) {
+		// TODO Auto-generated method stub
+		
+		try {
+			sdi.dropCourse(courseName, professor,username);
+		} catch (CourseNotFoundException e) {
+			// TODO Auto-generated catch block
+			System.out.println(e.getMsg());
+		}
+	}
+
+	/*
+	 * @method : viewReportCard()
+	 * It displays Report Card of particular student
+	 * 
+	 * @param : String username
+	 */
+	@Override
+	public void viewReportCard(String username) {
+		// TODO Auto-generated method stub
+		try {
+			sdi.viewReportCard(username);
+		} catch (GradeNotFoundException e) {
+			// TODO Auto-generated catch block
+			System.out.println(e.getMsg());
+		}
+	}
+
+	/*
+	 * @method : SemesterRegistration()
+	 * To register the semester
+	 * 
+	 * @param : String username, int semester
+	 */
+	@Override
+	public void semesterRegistration(String username,int semester) {
+		// TODO Auto-generated method stub
+		try {
+			sdi.semesterRegistration(username, semester);
+		} catch (SemesterNotFoundException e) {
+			// TODO Auto-generated catch block
+			System.out.println(e.getMsg());
+		}
+		
+	}
+
+	/*
+	 * @method : payFee()
+	 * The method is used to make payment
+	 * 
+	 * @param : String username
+	 */
+	@Override
+	public void payFee(String username) {
+		// TODO Auto-generated method stub
+		sdi.payFee(username);
+	}
+
+}

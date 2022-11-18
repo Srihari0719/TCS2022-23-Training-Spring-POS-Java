@@ -1,0 +1,54 @@
+/**
+ * 
+ */
+package com.tcs.bean;
+
+import java.util.ArrayList;
+
+/**
+ * @author Administrator
+ *
+ */
+public class Professor {
+	private String professorUsername;
+	private String professorName;
+	static ArrayList<Professor> pr = new ArrayList<>();
+	
+	public String getProfessorUsername() {
+		return professorUsername;
+	}
+	public Professor() {
+		super();
+	}
+	public Professor(String professorUsername, String professorName) {
+		super();
+		this.professorUsername = professorUsername;
+		this.professorName = professorName;
+	}
+	public void setProfessorUsername(String professorUsername) {
+		this.professorUsername = professorUsername;
+	}
+	public String getProfessorName() {
+		return professorName;
+	}
+	public void setProfessorName(String professorName) {
+		this.professorName = professorName;
+	}
+	
+	public ArrayList<Professor> getPr() {
+		return pr;
+	}
+	public void setPr(ArrayList<Professor> pr) {
+		this.pr = pr;
+	}
+	
+	/*
+	 * @method : put()
+	 * To add data
+	 */
+	public void put() {
+		pr.add(new Professor("sri@gmail.com","Sri"));
+		pr.add(new Professor("sai@gmail.com","Sai"));
+		pr.add(new Professor("dinesh@gmail.com","Dinesh"));
+	}
+}

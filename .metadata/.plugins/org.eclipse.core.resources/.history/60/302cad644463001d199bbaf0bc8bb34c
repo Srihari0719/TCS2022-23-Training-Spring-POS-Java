@@ -1,0 +1,42 @@
+package com.tcs.bean;
+
+import java.util.ArrayList;
+
+public class CourseCatalogue {
+	private int courseID;
+	private String courseName;
+	private String pName;
+	private String prerequisites;
+	private ArrayList<String> courses;
+	public int getCourseID() {
+		return courseID;
+	}
+	public void setCourseID(int courseID) {
+		this.courseID = courseID;
+	}
+	public String getCourseName() {
+		return courseName;
+	}
+	public void setCourseName(String courseName) {
+		this.courseName = courseName;
+	}
+	public String getpName() {
+		return pName;
+	}
+	public void setpName(String pName) {
+		this.pName = pName;
+	}
+	public String getPrerequisites() {
+		return prerequisites;
+	}
+	public void setPrerequisites(String prerequisites) {
+		this.prerequisites = prerequisites;
+	}
+	public ArrayList<String> getCourses() {
+		return courses;
+	}
+	public void setCourses(ArrayList<String> courses) {
+		this.courses = courses;
+	}
+	
+}

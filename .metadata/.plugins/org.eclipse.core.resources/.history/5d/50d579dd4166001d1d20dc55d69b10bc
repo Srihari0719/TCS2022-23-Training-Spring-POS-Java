@@ -1,0 +1,78 @@
+/**
+ * 
+ */
+package com.tcs.dao;
+
+import java.sql.*;
+import java.util.Scanner;
+
+import com.tcs.constant.SQLConstants;
+import com.tcs.utils.DBUtils;
+
+/**
+ * @author Administrator
+ *
+ */
+public class ProfessorDaoImp implements ProfessorDaoInterface{
+	
+	DBUtils cc = new DBUtils();
+	Connection conn = null;
+	PreparedStatement pr = null;
+	Scanner sc = new Scanner(System.in);
+	
+	@Override
+	public void addGrades(String username) {
+		// TODO Auto-generated method stub
+		conn = cc.connect();
+		PreparedStatement pr1 = null;
+		try {
+			pr = conn.prepareStatement(SQLConstants.LIST_ENROLLED_STUDENTS);
+			pr.setString(1, username);
+			ResultSet rs = pr.executeQuery(SQLConstants.LIST_ENROLLED_STUDENTS);
+			while(rs.next()) {
+				System.out.println("Student ID : " + rs.getInt("Id")+"\tStudent Name : " + rs.getString("name")+"\tCourse Name : "+rs.getString("courseName"));
+				System.out.println("Enter Grade option(1.A+,2.A,3.B+,4.B,5.C,6.F,7.AB) : ");
+				int grade = sc.nextInt();sc.nextLine();
+				pr1 = conn.prepareStatement(SQLConstants.GRADECARD);
+				pr1.setInt(1, rs.getInt("Id"));
+				pr1.setInt(2, rs.getInt("courseId"));
+				pr1.setInt(3, grade);
+				pr1.executeUpdate();
+			}
+			pr1.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			conn.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void viewCourseEnrolledStudents(String username) {
+		// TODO Auto-generated method stub
+		conn = cc.connect();
+		try {
+			pr = conn.prepareStatement(SQLConstants.LIST_ENROLLED_STUDENTS);
+			pr.setString(1, username);
+			ResultSet rs = pr.executeQuery(SQLConstants.LIST_ENROLLED_STUDENTS);
+			while(rs.next()) {
+				System.out.println("Student ID : " + rs.getInt("Id")+"\tStudent Name : " + rs.getString("name")+"\tCourse Name : "+rs.getString("courseName"));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			conn.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+}

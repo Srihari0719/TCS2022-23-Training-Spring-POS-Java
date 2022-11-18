@@ -1,0 +1,98 @@
+/**
+ * 
+ */
+package com.tcs.bean;
+
+import java.util.ArrayList;
+import java.lang.*;
+import java.util.Map;
+import java.util.TreeMap;
+import java.util.stream.Collector;
+
+/**
+ * @author Administrator
+ *
+ */
+public class Student {
+	private int sID;
+	private int noOfCoursesEnrolled;
+	private String sName;
+	private String sAddress;
+	ArrayList<Course>[] courseList = new ArrayList[4];
+	ArrayList<Student> studentList = new ArrayList<>();
+	
+
+	/**
+	 * @return the sID
+	 */
+	public Student(String sName) {
+		this.sName=sName;
+	}
+	public int getsID() {
+		return sID;
+	}
+	/**
+	 * @param sID the sID to set
+	 */
+	public void setsID(int sID) {
+		this.sID = sID;
+	}
+	/**
+	 * @return the noOfCoursesEnrolled
+	 */
+	public int getNoOfCoursesEnrolled() {
+		return noOfCoursesEnrolled;
+	}
+	/**
+	 * @param noOfCoursesEnrolled the noOfCoursesEnrolled to set
+	 */
+	public void setNoOfCoursesEnrolled(int noOfCoursesEnrolled) {
+		this.noOfCoursesEnrolled = noOfCoursesEnrolled;
+	}
+	/**
+	 * @return the sName
+	 */
+	public String getsName() {
+		return sName;
+	}
+	/**
+	 * @param sName the sName to set
+	 */
+	public void setsName(String sName) {
+		this.sName = sName;
+	}
+	/**
+	 * @return the sAddress
+	 */
+	public String getsAddress() {
+		return sAddress;
+	}
+	/**
+	 * @param sAddress the sAddress to set
+	 */
+	public void setsAddress(String sAddress) {
+		this.sAddress = sAddress;
+	}
+
+	public void putMethod() {
+		courseList[0].add(new Course("C","Sri"));
+		courseList[1].add(new Course("Java","Sai"));
+		courseList[0].add(new Course("Python","Sri"));
+		studentList.add(new Student("upendra@gmail.com"));
+		studentList.add(new Student("sunitha@gmail.com"));
+	}
+	public void addCourse(Course course, Student username) {
+		int n = studentList.indexOf(username);
+		System.out.println(username+"4"+username.toString());
+		System.out.println("Successfully Added." + n);
+	}
+	public void dropCourse(Course course,String username) {
+		for(int i=0;i<studentList.size();i++) {
+			if(studentList.get(i).equals(username)) {
+				courseList[i].remove(course);
+				System.out.println("Successfully Removed." + courseList[i].toString());
+				break;
+			}
+		}
+	}
+}

@@ -1,0 +1,43 @@
+/**
+ * 
+ */
+package com.tcs.service;
+
+import java.util.Scanner;
+
+import com.tcs.bean.CourseCatalogue;
+import com.tcs.bean.Professor;
+import com.tcs.bean.Student;
+
+/**
+ * @author Administrator
+ *
+ */
+public class ProfessorServiceImp implements ProfessorServiceInterface{
+	Professor p = new Professor();
+	CourseCatalogue cc = new CourseCatalogue();
+	Student s = new Student();
+	Scanner sc = new Scanner(System.in);
+	@Override
+	public void addGrades(String username) {
+		// TODO Auto-generated method stub
+		String name = null;
+		for(int i=0;i<p.getPr().size();i++) {
+			if(p.getPr().get(i).getProfessorUsername().equals(username)) {
+				name = (p.getPr().get(i).getProfessorName();
+				break;
+			}
+		}
+		System.out.println("Enter Course Name : ");
+		String cName = sc.nextLine();
+		
+	}
+	
+	@Override
+	public void viewCourseEnrolledStudents() {
+		// TODO Auto-generated method stub
+		for(int i=0;i<s.getStudentList().size();i++) {
+			if(s.getStudentList())
+		}
+	}
+}

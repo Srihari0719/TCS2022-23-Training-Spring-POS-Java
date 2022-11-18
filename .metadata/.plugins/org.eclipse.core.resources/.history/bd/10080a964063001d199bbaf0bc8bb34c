@@ -1,0 +1,62 @@
+/**
+ * 
+ */
+package com.tcs.service;
+
+import java.util.Scanner;
+
+import com.tcs.bean.Admin;
+import com.tcs.bean.Login;
+
+/**
+ * @author Administrator
+ *
+ */
+public class AdminServiceImp implements AdminServiceInterface {
+	Login l = new Login();
+	Admin ad = new Admin();
+	Scanner s = new Scanner(System.in);
+	
+	@Override
+	public void approvalForStudent() {
+		// TODO Auto-generated method stub
+		System.out.println("Approval List : ");
+		for(int i=0;i<ad.getStudentApprovalList().size();i++)
+			System.out.print(ad.getStudentApprovalList().get(i).getUsername() + ", ");
+		System.out.println("Enter username :");
+		String u = s.nextLine();
+		String p = "";
+		for(int i=0;i<ad.getStudentApprovalList().size();i++) {
+			if(ad.getStudentApprovalList().get(i).getUsername().equalsIgnoreCase(u)) {
+				p=ad.getStudentApprovalList().get(i).getPassword();
+				break;
+			}
+		}
+		ad.approvedList(u, p);
+		System.out.println("Successfully Approved.");
+	}
+
+	@Override
+	public void generateReportCard() {
+		// TODO Auto-generated stub
+		
+	}
+
+	@Override
+	public void addCourse(String course,String professor,int sem,float price) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void addProfessor(String usernameP,String passwordP) {
+		// TODO Auto-generated method stub
+		l.addProfesso(usernameP,passwordP);
+	}
+
+	@Override
+	public void removeCourse() {
+		// TODO Auto-generated method stub
+		
+	}
+}

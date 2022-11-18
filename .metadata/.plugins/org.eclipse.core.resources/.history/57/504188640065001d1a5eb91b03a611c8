@@ -1,0 +1,37 @@
+/**
+ * 
+ */
+package com.tcs.dao;
+
+import java.sql.*;
+
+
+/**
+ * @author Administrator
+ *
+ */
+public class UserDaoImp implements UserDaoInterface{
+	
+	ConnectionClass cc = new ConnectionClass();
+	Connection conn = cc.connect();
+	PreparedStatement pr = null;
+	@Override
+	public boolean userLogin(String username, String password, String role) {
+		// TODO Auto-generated method stub
+		boolean ul = false;
+		String sql = "Select username,role,isApproved from Login";
+		try {
+			ResultSet rs = pr.executeQuery(sql);
+			while(rs.next()) {
+				if(rs.getString(1).equals(username) && rs.getString(2).equalsIgnoreCase(role) && rs.getInt(3)==1)
+					ul = true;
+				else
+					ul = false;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return ul;
+	}
+}

@@ -1,0 +1,208 @@
+/**
+ * 
+ */
+package com.tcs.dao;
+
+import java.sql.*;
+import java.sql.SQLException;
+import java.util.Scanner;
+
+import com.tcs.constant.SQLConstants;
+import com.tcs.utils.DBUtils;
+
+/**
+ * @author Administrator
+ *
+ */
+public class StudentDaoImp implements StudentDaoInterface{
+	DBUtils cc = new DBUtils();
+	Connection conn = null;
+	PreparedStatement pr = null;
+	Scanner sc = new Scanner(System.in);
+	@Override
+	public void addCourse(int courseId,String courseName, String professor, String username) {
+		// TODO Auto-generated method stub
+		conn = cc.connect();
+		int sId =0,semester=0;
+		boolean isExists = false;
+		try {
+			PreparedStatement pr2 = conn.prepareStatement(SQLConstants.CATALOG);
+			PreparedStatement pr1 = conn.prepareStatement(SQLConstants.STUDENT);
+			ResultSet rs = pr1.executeQuery();
+			while(rs.next()) {
+				sId = rs.getInt("Id");
+				semester = rs.getInt("semester");
+			}
+			pr1.close();
+			if(semester == 0)
+				throw new NullPointerException("Please Update Semester..");
+			else	
+				pr2.setInt(1, semester);
+			ResultSet rs1 = pr2.executeQuery();
+			while(rs1.next()) {
+				System.out.println(rs1.getInt("courseId")+"-" + rs1.getString("courseName") + "-" + rs1.getString("professorName") + "-" + rs1.getFloat("coursePrice"));
+				if(rs1.getInt("courseId") == courseId)
+					isExists = true;
+			}
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		try {
+			if(isExists)
+				System.out.println("Course Already Exists..");
+			else {
+			pr = conn.prepareStatement(SQLConstants.COURSE_REGISTRATION);
+			pr.setInt(1, courseId);
+			pr.setString(2, courseName);
+			pr.setString(3, professor);
+			pr.setInt(4, sId);
+			pr.executeUpdate();
+			System.out.println("Successfully Added.");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			conn.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void dropCourse(String courseName, String professor, String username) {
+		// TODO Auto-generated method stub
+		conn = cc.connect();
+		
+		try {
+			PreparedStatement pr1 = conn.prepareStatement(SQLConstants.REGISTERED_COURSES);
+			pr1.setString(1, username);
+			ResultSet rs1 = pr1.executeQuery(SQLConstants.REGISTERED_COURSES);
+			while(rs1.next()) {
+				System.out.println(rs1.getInt("courseId")+"-" + rs1.getString("courseName") + "-" + rs1.getString("professorName"));
+			}
+			pr1.close();
+			pr = conn.prepareStatement(SQLConstants.DROP_STUDENT_COURSE);
+			pr.setString(1, courseName);
+			pr.setString(2, professor);
+			pr.executeUpdate();
+			System.out.println("Successfully Removed.");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			conn.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void viewReportCard(String username) {
+		// TODO Auto-generated method stub
+		conn=cc.connect();
+
+		try {
+			pr = conn.prepareStatement(SQLConstants.VIEW_REPORT);
+			pr.setString(1, username);
+			ResultSet rs = pr.executeQuery(SQLConstants.VIEW_REPORT);
+			while(rs.next()) {
+				System.out.println(rs.getInt("courseId")+"-" + rs.getString("courseName") + "-" + rs.getString("professorName")+"-"+rs.getString("grade"));
+			}
+			PreparedStatement pr1 = conn.prepareStatement(SQLConstants.STUDENT);
+			rs = pr1.executeQuery();
+			while(rs.next()) {
+				System.out.println("Overall Result : " + rs.getString("result"));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			conn.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void semesterRegistration(String username, int semester) {
+		// TODO Auto-generated method stub
+		conn = cc.connect();
+		try {
+			pr = conn.prepareStatement(SQLConstants.SEMESTER_UPDATE);
+			pr.setInt(1, semester);
+			pr.setString(2, username);
+			pr.executeUpdate();
+			System.out.println("Successfully Updated..");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			conn.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void payFee(String username) {
+		// TODO Auto-generated method stub
+		conn = cc.connect();
+		float bill = 0;
+		int sId=0;
+		
+		try {
+			PreparedStatement pr1 = conn.prepareStatement(SQLConstants.STUDENT);
+			ResultSet rs1 = pr1.executeQuery(SQLConstants.STUDENT);
+			while(rs1.next()) {
+				sId = rs1.getInt("Id");
+			}
+			pr1.close();
+			pr = conn.prepareStatement(SQLConstants.FETCH_BILL);
+			pr.setString(1, username);
+			ResultSet rs = pr.executeQuery(SQLConstants.FETCH_BILL);
+			while(rs.next()) {
+				System.out.println(rs.getFloat("bill"));
+				bill = rs.getFloat(1);
+			}
+			System.out.println("Your Bill : " + bill);
+			System.out.println("Choose Payment Mode : ");
+			System.out.println("1.Online/UPI Payment\n2.Credit/Debit Card\n3.Netbanking\n4.Pay by Cash");
+			int n = sc.nextInt();sc.nextLine();
+			String mode = null;
+			switch(n) {
+			case 1: mode = "Online/UPI Payment";break;
+			case 2: mode = "Credit/Debit Card";break;
+			case 3: mode = "Netbanking";break;
+			case 4: mode = "Pay by Cash";break;
+			default:throw new NullPointerException("Invalid Payment");
+			}
+			PreparedStatement pr2 = conn.prepareStatement(SQLConstants.PAYMENT);
+			pr2.setInt(1, sId);
+			pr2.setFloat(2, bill);
+			pr2.setString(3, mode);
+			pr2.executeUpdate();
+			pr2.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			conn.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+}

@@ -1,0 +1,77 @@
+/**
+ * 
+ */
+package com.tcs.dao;
+
+import java.sql.*;
+import java.sql.SQLException;
+
+/**
+ * @author Administrator
+ *
+ */
+public class StudentDaoImp implements StudentDaoInterface{
+	ConnectionClass cc = new ConnectionClass();
+	Connection conn = cc.connect();
+	PreparedStatement pr = null;
+	@Override
+	public void addCourse(int courseId,String courseName, String professor, String username) {
+		// TODO Auto-generated method stub
+		String sql1 = "SELECT Id FROM Student where username='" + username + "'";
+		int sId =0;
+		try {
+			PreparedStatement pr1 = conn.prepareStatement(sql1);
+			ResultSet rs = pr1.executeQuery();
+			while(rs.next()) {
+				sId = rs.getInt(1);
+			}
+			
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		String sql = "INSERT INTO CourseRegistration Values("+ courseId +",'" + courseName + "','" + professor + "'," + sId +")";
+		try {
+			pr = conn.prepareStatement(sql);
+			pr.executeUpdate();
+			System.out.println("Successfully Added.");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void dropCourse(String courseName, String professor, String username) {
+		// TODO Auto-generated method stub
+		String sql = "DELETE FROM CourseRegistration where courseName='"+ courseName +", AND profName='" + professor + "'";
+		try {
+			pr = conn.prepareStatement(sql);
+			pr.executeUpdate();
+			System.out.println("Successfully Removed.");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void viewReportCard(String username) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void semesterRegistration(String username, int semester) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void payFee(String username) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

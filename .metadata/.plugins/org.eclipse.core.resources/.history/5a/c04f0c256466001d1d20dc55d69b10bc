@@ -1,0 +1,21 @@
+/**
+ * 
+ */
+package com.tcs.exception;
+
+/**
+ * @author Administrator
+ *
+ */
+public class AlreadyExistsException extends Exception{
+	
+	private String msg;
+	
+	public AlreadyExistsException(String msg) {
+		this.msg=msg;
+	}
+	
+	public String getMsg() {
+		return msg;
+	}
+}

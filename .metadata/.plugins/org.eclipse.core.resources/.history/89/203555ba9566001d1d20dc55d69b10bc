@@ -1,0 +1,106 @@
+/**
+ * 
+ */
+package com.tcs.service;
+
+import java.util.Scanner;
+
+import com.tcs.bean.Admin;
+import com.tcs.bean.CourseCatalogue;
+import com.tcs.bean.GradeCard;
+import com.tcs.bean.Login;
+import com.tcs.bean.Student;
+import com.tcs.dao.AdminDaoImp;
+import com.tcs.dao.AdminDaoInterface;
+import com.tcs.exception.AlreadyExistsException;
+import com.tcs.exception.CourseNotFoundException;
+import com.tcs.exception.InvalidInputException;
+
+/**
+ * @author Administrator
+ *
+ */
+public class AdminServiceImp implements AdminServiceInterface {
+	
+	Scanner s = new Scanner(System.in);
+	AdminDaoInterface adi = new AdminDaoImp();
+	
+	/*
+	 * @method : approvalForStudent
+	 * Admin will approve the student who are registered
+	 * 
+	 */
+	@Override
+	public void approvalForStudent() {
+		// TODO Auto-generated method stub
+		try {
+			adi.approvalForStudent();
+		} catch (InvalidInputException e) {
+			// TODO Auto-generated catch block
+			System.out.println("Course Already Exists : " + e.getMsg());
+		}
+	}
+
+	/*
+	 * @method : generateReportCard()
+	 * Generates Report Card of every Student
+	 * 
+	 */
+	@Override
+	public void generateReportCard() {
+		// TODO Auto-generated stub
+		adi.generateReportCard();
+	}
+	
+	/*
+	 * @method : addCourse()
+	 * It adds courses in the Course Catalogue
+	 * 
+	 * @param : String course,String professor,int sem,float price
+	 */
+	@Override
+	public void addCourse(int courseId,String course,String professor,int sem,float price) {
+		// TODO Auto-generated method stub
+		try {
+			adi.addCourse(courseId,course, professor, sem, price);
+		} catch (AlreadyExistsException e) {
+			// TODO Auto-generated catch block
+			System.out.println(e.getMsg());
+		}
+	}
+
+	/*
+	 * @method : addProfessor()
+	 * It adds Professors in the Login Class
+	 * 
+	 * @param : String usernameP,String passwordP
+	 */
+	@Override
+	public void addProfessor(String usernameP,String passwordP) {
+		// TODO Auto-generated method stub
+		try {
+			adi.addProfessor(usernameP, passwordP);
+		} catch (AlreadyExistsException e) {
+			// TODO Auto-generated catch block
+			System.out.println(e.getMessage());
+		}
+		
+	}
+
+	/*
+	 * @method : removeCourse()
+	 * It removes courses in the Course Catalogue
+	 * 
+	 * @param : String course,String professor,int sem
+	 */
+	@Override
+	public void removeCourse(String course,String professor) {
+		// TODO Auto-generated method stub
+		try {
+			adi.removeCourse(course, professor);
+		} catch (CourseNotFoundException e) {
+			// TODO Auto-generated catch block
+			System.out.println(e.getMsg());
+		}
+	}
+}

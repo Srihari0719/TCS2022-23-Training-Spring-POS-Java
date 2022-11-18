@@ -1,0 +1,83 @@
+/**
+ * 
+ */
+package com.tcs.bean;
+
+import java.util.ArrayList;
+
+/**
+ * @author Administrator
+ *
+ */
+public class Student {
+	private int sID;
+	private int noOfCoursesEnrolled;
+	private String sName;
+	private String sAddress;
+	ArrayList<Course> courseList = new ArrayList<>();
+
+	public Student(int sID, int noOfCoursesEnrolled, String sName, String sAddress) {
+		super();
+		this.sID = sID;
+		this.noOfCoursesEnrolled = noOfCoursesEnrolled;
+		this.sName = sName;
+		this.sAddress = sAddress;
+	}
+	/**
+	 * @return the sID
+	 */
+	public int getsID() {
+		return sID;
+	}
+	/**
+	 * @param sID the sID to set
+	 */
+	public void setsID(int sID) {
+		this.sID = sID;
+	}
+	/**
+	 * @return the noOfCoursesEnrolled
+	 */
+	public int getNoOfCoursesEnrolled() {
+		return noOfCoursesEnrolled;
+	}
+	/**
+	 * @param noOfCoursesEnrolled the noOfCoursesEnrolled to set
+	 */
+	public void setNoOfCoursesEnrolled(int noOfCoursesEnrolled) {
+		this.noOfCoursesEnrolled = noOfCoursesEnrolled;
+	}
+	/**
+	 * @return the sName
+	 */
+	public String getsName() {
+		return sName;
+	}
+	/**
+	 * @param sName the sName to set
+	 */
+	public void setsName(String sName) {
+		this.sName = sName;
+	}
+	/**
+	 * @return the sAddress
+	 */
+	public String getsAddress() {
+		return sAddress;
+	}
+	/**
+	 * @param sAddress the sAddress to set
+	 */
+	public void setsAddress(String sAddress) {
+		this.sAddress = sAddress;
+	}
+	
+	public void addCourse(Course course) {
+		courseList.add(course);
+		System.out.println("Successfully Added.");
+	}
+	public void dropCourse(Course course) {
+		courseList.remove(course);
+		System.out.println("Successfully Removed.");
+	}
+}

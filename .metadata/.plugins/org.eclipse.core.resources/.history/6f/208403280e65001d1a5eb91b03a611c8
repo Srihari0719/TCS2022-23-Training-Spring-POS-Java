@@ -1,0 +1,55 @@
+/**
+ * 
+ */
+package com.tcs.dao;
+
+import java.sql.*;
+
+
+/**
+ * @author Administrator
+ *
+ */
+public class UserDaoImp implements UserDaoInterface{
+	
+	ConnectionClass cc = new ConnectionClass();
+	Connection conn = cc.connect();
+	PreparedStatement pr = null;
+	@Override
+	public boolean userLogin(String username, String password, String role) {
+		// TODO Auto-generated method stub
+		boolean ul = false;
+		String sql = "SELECT username,password,role,isApproved FROM Login";
+		
+		try {
+			pr = conn.prepareStatement(sql);
+			ResultSet rs = pr.executeQuery(sql);
+			while(rs.next()) {
+				if(rs.getString("username").equals(username) && rs.getString(password).equals(password) && rs.getString("role").equalsIgnoreCase(role) && rs.getInt("isApproved")==1) {
+					ul = true;
+					break;
+				}
+				else
+					ul = false;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return ul;
+	}
+	@Override
+	public void addStudent(String username, String password) {
+		// TODO Auto-generated method stub
+		String sql = "INSERT INTO Login VALUES (?,?,student," + 0 + ")";
+		try {
+			pr = conn.prepareStatement(sql);
+			pr.setString(1, username);
+			pr.setString(1, password);
+			pr.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+}

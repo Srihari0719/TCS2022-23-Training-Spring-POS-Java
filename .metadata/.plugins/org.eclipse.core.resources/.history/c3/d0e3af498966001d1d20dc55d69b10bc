@@ -1,0 +1,23 @@
+/**
+ * 
+ */
+package com.tcs.exception;
+
+/**
+ * @author Administrator
+ *
+ */
+public class CourseNotFoundException extends Exception{
+
+	private static final long serialVersionUID = 1L;
+
+	private String msg;
+	
+	public CourseNotFoundException(String msg) {
+		this.msg = msg;
+	}
+	
+	public String getMsg() {
+		return msg;
+	}
+}

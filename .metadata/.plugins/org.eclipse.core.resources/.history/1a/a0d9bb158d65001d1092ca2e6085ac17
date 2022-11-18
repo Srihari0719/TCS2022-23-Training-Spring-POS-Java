@@ -1,0 +1,59 @@
+/**
+ * 
+ */
+package com.tcs.dao;
+
+import java.sql.*;
+
+import com.tcs.utils.DBUtils;
+
+
+/**
+ * @author Administrator
+ *
+ */
+public class UserDaoImp implements UserDaoInterface{
+	
+	DBUtils cc = new DBUtils();
+	Connection conn = cc.connect();
+	PreparedStatement pr = null;
+	@Override
+	public boolean userLogin(String username, String password, String role) {
+		// TODO Auto-generated method stub
+		boolean ul = false;
+		String sql = "SELECT username,password,role,isApproved FROM Login";
+		
+		try {
+			pr = conn.prepareStatement(sql);
+			ResultSet rs = pr.executeQuery(sql);
+			while(rs.next()) {
+				if(rs.getString("username").equals(username) && rs.getString("password").equals(password) && rs.getString("role").equalsIgnoreCase(role) && rs.getInt("isApproved")==1) {
+					ul = true;
+					break;
+				}
+				else if(rs.getInt("isApproved")==2 && rs.getString("username").equals(username)) {
+					throw new NullPointerException("You are denied by Admin. Contact Admin for further details..");
+				}
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return ul;
+	}
+	@Override
+	public void addStudent(String username, String password) {
+		// TODO Auto-generated method stub
+		String sql = "INSERT INTO Login VALUES (?,?,?," + 0 + ")";
+		try {
+			pr = conn.prepareStatement(sql);
+			pr.setString(1, username);
+			pr.setString(2, password);
+			pr.setString(3, "student");
+			pr.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+}

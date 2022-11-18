@@ -1,0 +1,56 @@
+/**
+ * 
+ */
+package com.tcs.bean;
+
+import java.util.ArrayList;
+
+/**
+ * @author Administrator
+ *
+ */
+public class SemesterRegistration {
+	private int studentID;
+	private String studentName;
+	private int semester;
+	private String regulation;
+	static ArrayList<SemesterRegistration> sr = new ArrayList<>();
+	
+	public SemesterRegistration() {
+		
+	}
+	
+	public SemesterRegistration(String studentName, int semester) {
+		super();
+		this.studentName = studentName;
+		this.semester = semester;
+	}
+	public void addSem(String studentName,int semester) {
+		sr.add(new SemesterRegistration(studentName,semester));
+	}
+	public int getStudentID() {
+		return studentID;
+	}
+	public void setStudentID(int studentID) {
+		this.studentID = studentID;
+	}
+	public String getStudentName() {
+		return studentName;
+	}
+	public void setStudentName(String studentName) {
+		this.studentName = studentName;
+	}
+	public int getSemester() {
+		return semester;
+	}
+	public void setSemester(int semester) {
+		this.semester = semester;
+	}
+	public String getRegulation() {
+		return regulation;
+	}
+	public void setRegulation(String regulation) {
+		this.regulation = regulation;
+	}
+	
+}

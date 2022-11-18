@@ -1,0 +1,170 @@
+/**
+ * 
+ */
+package com.tcs.service;
+
+import java.util.Scanner;
+
+import com.tcs.bean.Login;
+import com.tcs.bean.Student;
+
+/**
+ * @author Administrator
+ *
+ */
+public class UserServiceImp implements UserServiceInterface{
+	Scanner sc = new Scanner(System.in);
+	AdminServiceInterface asi = new AdminServiceImp();
+	StudentServiceInterface ssi = new StudentServiceImp();
+	ProfessorServiceInterface psi = new ProfessorServiceImp();
+	Login l = new Login();
+	Student s = new Student();
+	@Override
+	public void userRegistration() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void adminLogin(String username, String password) {
+		// TODO Auto-generated method stub
+		Login la = new Login(username,password);
+		if(la.verifyAdminCredentials(la)) {
+			boolean a = true;
+			while(a) {
+			System.out.println("--Admin Menu--");
+			System.out.println();
+			System.out.println("1.Approval of Student\n2.Generate Report Card\n3.Add Professor\n4.Add Course\n5.Remove Course\n6.Log Out");
+			int op = sc.nextInt();sc.nextLine();
+			switch(op) {
+			case 1: asi.approvalForStudent();
+					break;
+			case 2: asi.generateReportCard();
+					break;
+			case 3: System.out.println("Enter Username : ");
+					String usernameP = sc.nextLine();
+					System.out.println("Enter Password : ");
+					String passwordP = sc.nextLine();
+					asi.addProfessor(usernameP,passwordP);
+					break;
+			case 4: System.out.println("Enter Course Name : ");
+					String course = sc.nextLine();
+					System.out.println("Enter Professor Name : ");
+					String professor = sc.nextLine();
+					System.out.println("Enter Semester Name : ");
+					int sem = sc.nextInt();
+					System.out.println("Enter Course Price : ");
+					float coursePrice = sc.nextInt();
+					asi.addCourse(course,professor, sem, coursePrice);
+					break;
+			case 5: System.out.println("Enter Course Name : ");
+					String coursename = sc.nextLine();
+					System.out.println("Enter Professor Name : ");
+					String prof = sc.nextLine();
+					System.out.println("Enter Semester Name : ");
+					int semester = sc.nextInt();
+					asi.removeCourse(coursename, prof, semester);
+					break;
+			case 6: a = false;
+					break;
+			default:throw new NullPointerException("----Invalid Choice----");
+		}
+		}
+		}
+		else {
+			throw new NullPointerException("Invalid Credentials.");
+		}
+	}
+
+	@Override
+	public void userLogin(String username, String password, String role) {
+		// TODO Auto-generated method stub
+		if(role.equalsIgnoreCase("admin"))  {
+			adminLogin(username,password);
+		}
+		else if(role.equalsIgnoreCase("professor")) {
+			professorLogin(username,password);
+		}
+		else if(role.equalsIgnoreCase("student")) {
+			studentLogin(username,password);
+		}
+		else {
+			throw new NullPointerException("Please give valid role.");
+		}
+	}
+
+	@Override
+	public void professorLogin(String username, String password) {
+		// TODO Auto-generated method stub
+		Login la = new Login(username,password);
+		if(la.verifyProfessorCredentials(la)) {
+			boolean p = true;
+			while(p) {
+			System.out.println("--Professor Menu--");
+			System.out.println();
+			System.out.println("1.Add Grades\n2.View Course Enrolled Students\n3.Log Out");
+			int op = sc.nextInt();sc.nextLine();
+			switch(op) {
+			case 1: psi.addGrades(username);
+					break;
+			case 2: psi.viewCourseEnrolledStudents(username);
+					break;
+			case 3: p = false;
+					break;
+			default:throw new NullPointerException("----Invalid Choice----");
+			}
+		}
+		}
+		else {
+			throw new NullPointerException("Invalid Credentials.");
+		}
+	}
+
+	@Override
+	public void studentLogin(String username, String password) {
+		// TODO Auto-generated method stub
+		Login la = new Login(username,password);
+		if(la.verifyStudentCredentials(la)) {
+			boolean s = true;
+			while(s) {
+			System.out.println("--Student Menu--");
+			System.out.println();
+			System.out.println("1.Add Course\n2.Drop Course\n3.View Report Card\n4.Make Payment\n5.Semester Registration\n6.Log Out");
+			int op = sc.nextInt();sc.nextLine();
+			switch(op) {
+			case 1: System.out.println("Enter courseName :");
+					String courseName = sc.nextLine();
+					System.out.println("Enter Professor :");
+					String professor = sc.nextLine();
+					System.out.println(username+"1");
+					ssi.addCourse(courseName, professor,username);
+					break;
+			case 2: System.out.println("Enter courseName :");
+					String course = sc.nextLine();
+					System.out.println("Enter Professor :");
+					String professorName = sc.nextLine();
+					
+					ssi.dropCourse(course, professorName,username);
+					break;
+			case 3: ssi.viewReportCard(username);
+					break;
+			case 4: ssi.payFee(username);
+					System.out.println("Choose PAyment Method : ");
+					System.out.println("1.Online Payment\n2.Offline Payment");
+					break;
+			case 5: System.out.println("Enter Semester : ");
+					int semesterNumber = sc.nextInt();
+					ssi.semesterRegistration(username,semesterNumber);
+					break;
+			case 6: s=false;
+					break;
+			default:throw new NullPointerException("----Invalid Choice----");
+			}
+		}
+		}
+		else {
+			throw new NullPointerException("Invalid Credentials.");
+		}
+	}
+
+}
